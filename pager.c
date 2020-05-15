@@ -13,8 +13,6 @@ void printFile(char *fn) {
     if ((f = fopen(fn, "r")) != NULL) {
         while ((c = fgetc(f)) != EOF) {
             if (newPage) {
-                /* Print out the header for start of a
-                 * new page. */
                 printf("[%s] START PAGE %d\n", fn, pageNum);
                 newPage = FALSE;
                 line = 1;
@@ -23,8 +21,6 @@ void printFile(char *fn) {
             putchar(c);
 
             if (c == '\n' && ++line > LINESPERPAGE) {
-                /* Print out the footer for the end
-                 * of a page. */
                 printf("[%s] END PAGE %d\n", fn, pageNum);
 
                 putchar('\n');
@@ -34,8 +30,6 @@ void printFile(char *fn) {
         }
 
         if (!newPage) {
-            /* File ended in the middle of a page, so we still need to
-               print a footer. */
             printf("[%s] END PAGE %d\n", fn, pageNum);
         }
 
